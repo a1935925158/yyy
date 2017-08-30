@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="电影.css">
+    </head>
+    <body>
+    <div class="top gWidth">
+			<div class="topbg">
+				<div class="head gWidth">
+					<a href="优酷.html"><img src="imges/logo.jpg" class="logo"></a>
+					<form>
+						<input type="text" class="text">
+						<button type="submit" class="sub"></button>
+					</form>
+					<ul>
+						<li class="l1"><a href="">登录</a> | <a href="">注册</a></li>
+						<li class="lb"><a href="">观看记录</a></li>
+						<li class="lc"><a href="">上传</a></li>
+					</ul>
+				</div>
+			</div>
+			<ul class="nav gWidth">
+				<a href="优酷.html"><li>首页</li></a>
+				<a href="优酷电视剧.html"><li>电视剧</li></a>
+				<a href=""><li class="active">电影</li></a>
+				<a href=""><li>综艺</li></a>
+				<a href=""><li>音乐</li></a>
+				<a href=""><li>动漫</li></a>
+				<span><a href=""><li class="zx">资讯</li></a>
+				<a href=""><li>拍客</li></a>
+				<a href=""><li>纪录片</li></a>
+				<a href=""><li>体育</li></a>
+				<a href=""><li>汽车</li></a>
+				<a href=""><li>科技</li></a>
+				<a href=""><li>财经</li></a>
+				<a href=""><li>娱乐</li></a>
+				<a href=""><li>原创</li></a>
+				<a href=""><li>游戏</li></a>
+				<a href=""><li>搞笑</li></a>
+				<a href=""><li>旅游</li></a>
+				<a href=""><li>时尚</li></a>
+				<a href=""><li>母婴</li></a>
+				<a href=""><li>教育</li></a>
+				<a href=""><li>排行榜</li></a>
+				<a href=""><li>全部</li></a>
+				<a href=""><li class="tr">个人中心</li></a>
+				<a href=""><li>会员</li></a>
+				<a href=""><li class="lc">App下载</li></a></span>
+			</ul>
+			<ul class="navb gWidth">
+				<a href=""><li class="active">电影频道</li></a>
+				<a href=""><li>新上映</li></a>
+				<a href=""><li>新收录</li></a>
+				<a href=""><li>华语</li></a>
+				<a href=""><li>韩国</li></a>
+				<a href=""><li>好莱坞</li></a>
+				<a href=""><li>新加坡</li></a>
+				<a href=""><li>电影排行榜</li></a>
+				<a href=""><li>全部电影</li></a>
+			</ul>
+		</div>
+
+
+
+
+
+<div id="playBox">
+    <div class="pre"></div>
+    <div class="next"></div>
+    <div class="smalltitle">
+      <ul>
+        <li class="thistitle"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+    <ul class="oUlplay">
+       <li><a href="#" target="_blank"><img src="imges2/1.jpg" height="410" width="1190"></a></li>
+       <li><a href="#" target="_blank"><img src="imges2/1.jpg" height="410" width="1190"></a></li>
+       <li><a href="#" target="_blank"><img src="imges2/1.jpg" height="410" width="1190"></a></li>
+       <li><a href="#" target="_blank"><img src="imges2/1.jpg" height="410" width="1190"></a></li>
+       <li><a href="#" target="_blank"><img src="imges2/1.jpg" height="410" width="1190"></a></li>
+       <li><a href="#" target="_blank"><img src="imges2/1.jpg" height="410" width="1190"></a></li>
+    </ul>
+  </div>
+
+  <script>
+
+  	function getStyle(obj,name)
+{
+	if(obj.currentStyle)
+	{
+		return obj.currentStyle[name]
+	}
+	else
+	{
+		return getComputedStyle(obj,false)[name]
+	}
+}
+
+function getByClass(oParent,nClass)
+{
+	var eLe = oParent.getElementsByTagName('*');
+	var aRrent  = [];
+	for(var i=0; i<eLe.length; i++)
+	{
+		if(eLe[i].className == nClass)
+		{
+			aRrent.push(eLe[i]);
+		}
+	}
+	return aRrent;
+}
+
+function startMove(obj,att,add)
+{
+	clearInterval(obj.timer)
+	obj.timer = setInterval(function(){
+	   var cutt = 0 ;
+	   if(att=='opacity')
+	   {
+		   cutt = Math.round(parseFloat(getStyle(obj,att)));
+	   }
+	   else
+	   {
+		   cutt = Math.round(parseInt(getStyle(obj,att)));
+	   }
+	   var speed = (add-cutt)/4;
+	   speed = speed>0?Math.ceil(speed):Math.floor(speed);
+	   if(cutt==add)
+	   {
+		   clearInterval(obj.timer)
+	   }
+	   else
+	   {
+		   if(att=='opacity')
+		   {
+			   obj.style.opacity = (cutt+speed)/100;
+			   obj.style.filter = 'alpha(opacity:'+(cutt+speed)+')';
+		   }
+		   else
+		   {
+			   obj.style[att] = cutt+speed+'px';
+		   }
+	   }
+	   
+	},30)
+}
+
+  window.onload = function()
+  {
+	  var oDiv = document.getElementById('playBox');
+	  var oPre = getByClass(oDiv,'pre')[0];
+	  var oNext = getByClass(oDiv,'next')[0];
+	  var oUlBig = getByClass(oDiv,'oUlplay')[0];
+	  var aBigLi = oUlBig.getElementsByTagName('li');
+	  var oDivSmall = getByClass(oDiv,'smalltitle')[0]
+	  var aLiSmall = oDivSmall.getElementsByTagName('li');
+	  
+	  function tab()
+	  {
+	     for(var i=0; i<aLiSmall.length; i++)
+	     {
+		    aLiSmall[i].className = '';
+	     }
+	     aLiSmall[now].className = 'thistitle'
+	     startMove(oUlBig,'left',-(now*aBigLi[0].offsetWidth))
+	  }
+	  var now = 0;
+	  for(var i=0; i<aLiSmall.length; i++)
+	  {
+		  aLiSmall[i].index = i;
+		  aLiSmall[i].onclick = function()
+		  {
+			  now = this.index;
+			  tab();
+		  }
+	 }
+	  oPre.onclick = function()
+	  {
+		  now--
+		  if(now ==-1)
+		  {
+			  now = aBigLi.length;
+		  }
+		   tab();
+	  }
+	   oNext.onclick = function()
+	  {
+		   now++
+		  if(now ==aBigLi.length)
+		  {
+			  now = 0;
+		  }
+		  tab();
+	  }
+	  var timer = setInterval(oNext.onclick,3000) //滚动间隔时间设置
+	  oDiv.onmouseover = function()
+	  {
+		  clearInterval(timer)
+	  }
+	   oDiv.onmouseout = function()
+	  {
+		  timer = setInterval(oNext.onclick,3000) //滚动间隔时间设置
+	  }
+  }
+  </script>
+			<div class="fenlei gWidth">
+			<ul class="top1">
+				<li class="p1">地区</li>
+				<li class="p2">类型</li>
+				<li class="p3">状态</li>
+				<li>按评分</li>
+				<a href=""><li class="abanner"><img src="imges/abanner.jpg" height="22" width="128"></li></a>
+			</ul>
+			<ul class="cont">
+				<a href=""><li class="l1">大陆</li></a>
+				<a href=""><li class="l1">台湾</li></a>
+				<a href=""><li class="l1">香港</li></a>
+				<a href=""><li>韩国</li></a>
+				<a href=""><li class="l1">美国</li></a>
+				<a href=""><li class="l1">英国</li></a>
+				<a href=""><li class="l1">泰国</li></a>
+				<a href=""><li>新加坡</li></a>
+			</ul>
+			<ul class="conta">
+				<a href=""><li class="l1">古装</li></a>
+				<a href=""><li class="l1">武侠</li></a>
+				<a href=""><li class="l1">警匪</li></a>
+				<a href=""><li class="l1">军事</li></a>
+				<a href=""><li class="l1">神话</li></a>
+				<a href=""><li class="l1">科技</li></a>
+				<a href=""><li class="l1">搞笑</li></a>
+				<a href=""><li class="l1">偶像</li></a>
+				<a href=""><li>优酷出品</li></a>
+				<a href=""><li class="l1">悬疑</li></a>
+				<a href=""><li class="l1">历史</li></a>
+				<a href=""><li class="l1">儿童</li></a>
+				<a href=""><li class="l1">农村</li></a>
+				<a href=""><li class="l1">都市</li></a>
+				<a href=""><li class="l1">家庭</li></a>
+				<a href=""><li class="l1">言情</li></a>
+				<a href=""><li>时装</li></a>
+			</ul>
+			<ul class="contb">
+				<a href=""><li class="l1">更新中</li></a>
+				<a href=""><li>全集</li></a>
+				<a href=""><li class="l1">近期上映</li></a>
+				<a href=""><li>评分</li></a>
+			</ul>
+			<ul class="contc">
+				<a href=""><li class="l1">铁血玫瑰</li></a>
+				<a href=""><li class="l1">两个爸爸</li></a>
+				<a href=""><li>听见你的声音</li></a>
+				<a href=""><li class="l1">风影</li></a>
+				<a href=""><li>爱在春天</li></a>
+			</ul>
+		</div>
+		<div class="box gWidth">
+			<div class="picbox">
+				<ul class="piclist">
+					<li><a href="#" target="_blank"><img src="imges2/优酷电影.jpg" height="110" width="200"/></a></li>
+					<li><a href="#" target="_blank"><img src="imges2/优酷电影.jpg" /></a></li>
+					<li><a href="#" target="_blank"><img src="imges2/优酷电影.jpg" /></a></li>
+					<li><a href="#" target="_blank"><img src="imges2/优酷电影.jpg" /></a></li>
+					<li><a href="#" target="_blank"><img src="imges2/优酷电影.jpg" /></a></li>
+		            <li><a href="#" target="_blank"><img src="imges2/优酷电影.jpg" /></a></li>
+					<li><a href="#" target="_blank"><img src="imges2/优酷电影.jpg" /></a></li>
+					<li><a href="#" target="_blank"><img src="imges2/优酷电影.jpg" /></a></li>
+				</ul>
+		        <ul class="piclist swaplist"></ul>
+			</div>
+			<div class="og_prev"></div>
+			<div class="og_next"></div>
+		</div>
+		<div class="zq gWidth">
+			<div class="left">
+			<p>强档专区</p>
+			<div class="box gWidth">
+			<div class="picbox">
+				<ul class="piclist">
+					<li><a href="#" target="_blank"><img src="imges2/优酷电影.jpg" height="110" width="200"/></a></li>
+					<li><a href="#" target="_blank"><img src="imges2/优酷电影.jpg" /></a></li>
+					<li><a href="#" target="_blank"><img src="imges2/优酷电影.jpg" /></a></li>
+					<li><a href="#" target="_blank"><img src="imges2/优酷电影.jpg" /></a></li>
+					<li><a href="#" target="_blank"><img src="imges2/优酷电影.jpg" /></a></li>
+		            <li><a href="#" target="_blank"><img src="imges2/优酷电影.jpg" /></a></li>
+					<li><a href="#" target="_blank"><img src="imges2/优酷电影.jpg" /></a></li>
+					<li><a href="#" target="_blank"><img src="imges2/优酷电影.jpg" /></a></li>
+				</ul>
+		        <ul class="piclist swaplist"></ul>
+			</div>
+			<div class="og_prev"></div>
+			<div class="og_next"></div>
+		</div>
+			</div>
+			<div class="right"></div>
+		</div>
+
+	<script>
+	$(document).ready(function(e) {
+	time = window.setInterval(function(){
+		$('.og_next').click();	
+	},5000);
+	linum = $('.mainlist li').length;
+	w = linum * 250;
+	$('.piclist').css('width', w + 'px');
+	$('.swaplist').html($('.mainlist').html());
+	
+	$('.og_next').click(function(){
+		
+		if($('.swaplist,.mainlist').is(':animated')){
+			$('.swaplist,.mainlist').stop(true,true);
+		}
+		
+		if($('.mainlist li').length>4){
+			ml = parseInt($('.mainlist').css('left'));
+			sl = parseInt($('.swaplist').css('left'));
+			if(ml<=0 && ml>w*-1){//默认图片显示时
+				$('.swaplist').css({left: '1000px'});
+				$('.mainlist').animate({left: ml - 1000 + 'px'},'slow');				
+				if(ml==(w-1000)*-1){//默认图片最后一屏时
+					$('.swaplist').animate({left: '0px'},'slow');
+				}
+			}else{//交换图片显示时
+				$('.mainlist').css({left: '1000px'})
+				$('.swaplist').animate({left: sl - 1000 + 'px'},'slow');//交换图片滚动
+				if(sl==(w-1000)*-1){
+					$('.mainlist').animate({left: '0px'},'slow');
+				}
+			}
+		}
+	})
+	$('.og_prev').click(function(){
+		
+		if($('.swaplist,.mainlist').is(':animated')){
+			$('.swaplist,.mainlist').stop(true,true);
+		}
+		
+		if($('.mainlist li').length>4){
+			ml = parseInt($('.mainlist').css('left'));
+			sl = parseInt($('.swaplist').css('left'));
+			if(ml<=0 && ml>w*-1){
+				$('.swaplist').css({left: w * -1 + 'px'});
+				$('.mainlist').animate({left: ml + 1000 + 'px'},'slow');				
+				if(ml==0){
+					$('.swaplist').animate({left: (w - 1000) * -1 + 'px'},'slow');
+				}
+			}else{
+				$('.mainlist').css({left: (w - 1000) * -1 + 'px'});
+				$('.swaplist').animate({left: sl + 1000 + 'px'},'slow');
+				if(sl==0){
+					$('.mainlist').animate({left: '0px'},'slow');
+				}
+			}
+		}
+	})    
+});
+
+$(document).ready(function(){
+	$('.og_prev,.og_next').hover(function(){
+			$(this).fadeTo('fast',1);
+		},function(){
+			$(this).fadeTo('fast',0.7);
+	})
+
+})
+	</script>
+
+	<div class="banner gWidth">
+		<img src="imges/hjdbanner.jpg" height="19" width="141" alt="">
+		<img src="imges/hjdbanner2.jpg" height="24" width="128" alt="" class="right">
+	</div>
+	<div class="zxa gWidth">
+		<div class="left">
+			<ul class="nav">
+				<li class="active">最新预告</li>
+				<li>影院热映</li>
+				<li>即将上映</li>
+			</ul>
+			<div class="zxb">
+				<a href=""><img src="imges2/zx.jpg" height="110" width="200" alt="" class="imgb imga"></a>
+				<a href=""><img src="imges2/zx.jpg" alt="" class="imgb imga"></a>
+				<a href=""><img src="imges2/zx.jpg" alt="" class="imgb imga"></a>
+				<a href=""><img src="imges2/zx.jpg" alt="" class="imga"></a>
+				<a href=""><img src="imges2/zx.jpg" alt="" class="imgb"></a>
+				<a href=""><img src="imges2/zx.jpg" alt="" class="imgb"></a>
+				<a href=""><img src="imges2/zx.jpg" alt="" class="imgb"></a>
+				<a href=""><img src="imges2/zx.jpg" alt=""></a>
+			</div>
+		</div>
+		<div class="right">
+			<p class="p1">您最近观看的电影 <a href=""><span>更多</span></a></p>
+			<p class="rb">
+				暂无播放记录
+			</div>
+		</div>
+	</div>
+	<div class="xp gWidth">
+		<p>每周新片</p>
+		<div class="xpb">
+			<a href=""><img src="imges2/xp.jpg" height="300" width="200"></a>
+			<a href=""><img src="imges2/xp.jpg" height="300" width="200"></a>
+			<a href=""><img src="imges2/xp.jpg" height="300" width="200"></a>
+			<a href=""><img src="imges2/xp.jpg" height="300" width="200"></a>
+			<a href=""><img src="imges2/xp.jpg" height="300" width="200"></a>
+		</div>
+	</div>
+	<div class="ykcp gWidth">
+			<div class="left">
+				<p>优酷出品</p>
+				<ul class="u1">
+					<a href=""><li><img src="imges2/yktu.jpg" height="110" width="200"></li></a>
+					<a href=""><li><img src="imges2/yktu.jpg"></li></a>
+					<a href=""><li><img src="imges2/yktu.jpg"></li></a>
+					<a href=""><li><img src="imges2/yktu.jpg"></li></a>
+				</ul>
+				<ul class="u2">
+					<a href=""><li><img src="imges2/bannerc.jpg" height="90" width="600"></li></a>
+					<a href=""><li><img src="imges/ykcpbanner2.jpg" height="110" width="200"></li></a>
+				</ul>
+			</div>
+			<div class="right">
+				<p>独家视频官网</p>
+				<div class="ykr">
+					<a href=""><img src="imges2/yk.jpg" height="50" width="90"></a>
+					<ul>
+						<a href=""><li>上海电视节全程报道</li></a>
+						<a href=""><li class="l1">揭晓白玉兰视帝视后</li></a>
+					</ul>
+					<a href=""><img src="imges2/yk.jpg" height="50" width="90"></a>
+					<ul>
+						<a href=""><li>上海电视节全程报道</li></a>
+						<a href=""><li class="l1">揭晓白玉兰视帝视后</li></a>
+					</ul>
+					<a href=""><img src="imges2/yk.jpg" height="50" width="90"></a>
+					<ul>
+						<a href=""><li>上海电视节全程报道</li></a>
+						<a href=""><li class="l1">揭晓白玉兰视帝视后</li></a>
+					</ul>
+					<a href=""><img src="imges2/yk.jpg" height="50" width="90"></a>
+					<ul>
+						<a href=""><li>上海电视节全程报道</li></a>
+						<a href=""><li class="l1">揭晓白玉兰视帝视后</li></a>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="wsrb gWidth">
+			<div class="left">
+				<p class="p1">华语最好看</p>
+				<div class="ta">
+					<a href=""><img src="imges2/hy.jpg"></a>
+					<a href=""><img src="imges2/hy.jpg" class="l1 a1"></a>
+					<a href=""><img src="imges2/hy.jpg" class="l1 a1"></a>
+					<a href=""><img src="imges2/hy.jpg" class="l1"></a>
+				</div>
+				<div class="tb">
+					<a href=""><img src="imges2/hya.jpg" height="110" width="200" class="l1"></a>
+					<a href=""><img src="imges2/hya.jpg" class="l1"></a>
+					<a href=""><img src="imges2/hya.jpg" class="l1"></a>
+					<a href=""><img src="imges2/hya.jpg"></a>
+				</div>
+			</div>
+			<div class="right">
+				<p class="p1">大陆剧热播榜</p>
+				<ul class="pm">
+					<a href=""><li class="l1a">爱情公寓 第三季<span>7.8分</span></li></a>
+					<a href=""><li class="l2a">爱情公寓 第三季<span>7.8分</span></li></a>
+					<a href=""><li class="l3a">爱情公寓 第三季<span>7.8分</span></li></a>
+					<a href=""><li class="aa">爱情公寓 第三季<span>7.8分</span></li></a>
+					<a href=""><li class="l5">爱情公寓 第三季<span>7.8分</span></li></a>
+					<a href=""><li class="l6">爱情公寓 第三季<span>7.8分</span></li></a>
+					<a href=""><li class="l7">爱情公寓 第三季<span>7.8分</span></li></a>
+					<a href=""><li class="l8">爱情公寓 第三季<span>7.8分</span></li></a>
+					<a href=""><li class="l9">爱情公寓 第三季<span>7.8分</span></li></a>
+					<a href=""><li class="l10">爱情公寓 第三季<span>7.8分</span></li></a>
+				</ul>
+				<ul class="hjdb">
+					<a href=""><ul class="u1">
+						<img src="imges/hjdbanner3.jpg" height="50" width="90">
+						<li class="l1">第18期：最IN时尚密码</li>
+						<li class="l2">新编辑部故事</li>
+					</ul></a>
+					<a href=""><ul class="u1">
+						<img src="imges/hjdbanner3.jpg" height="50" width="90">
+						<li class="l1">第18期：最IN时尚密码</li>
+						<li class="l2">新编辑部故事</li>
+					</ul></a>
+				</ul>
+			</div>
+		</div>
+		<div class="oz gWidth">
+			<div class="left">
+				<p>经典欧洲风</p>
+				<a href=""><img src="imges2/oz1.jpg" height="300" width="200" alt="" class="img1"></a>
+				<a href=""><img src="imges2/oz1.jpg" height="300" width="200" alt="" class="img1"></a>
+				<a href=""><img src="imges2/oz1.jpg" alt="" class="img1"></a>
+				<a href=""><img src="imges2/oz1.jpg" alt=""></a>
+			</div>
+			<div class="right">
+				<p class="p1">预告片排行榜</p>
+				<div class="ozcont">
+					<ul>
+						<a href=""><li class="l1">环太平洋</li></a>
+						<a href=""><li class="l2">环太平洋</li></a>
+						<a href=""><li class="l3">环太平洋</li></a>
+						<a href=""><li class="l4">环太平洋</li></a>
+						<a href=""><li class="l5">环太平洋</li></a>
+					</ul>
+					<ul class="u2">
+						<a href=""><li class="l1">环太平洋</li></a>
+						<a href=""><li class="l2">环太平洋</li></a>
+						<a href=""><li class="l3">环太平洋</li></a>
+						<a href=""><li class="l4">环太平洋</li></a>
+						<a href=""><li class="l5">环太平洋</li></a>
+					</ul>
+				</div>
+				<p class="p2"><a href="">更多排行 >></a></p>
+				<a href=""><img src="imges2/oz2.png" height="100" width="300" alt=""></a>
+			</div>
+		</div>
+		<div class="dhp gWidth">
+			<div class="left">
+				<p>欢乐动画片</p>
+				<a href=""><img src="imges2/dhp.jpg" height="300" width="200" alt="" class="img1"></a>
+				<a href=""><img src="imges2/dhp.jpg" height="300" width="200" alt="" class="img1"></a>
+				<a href=""><img src="imges2/dhp.jpg" height="300" width="200" alt="" class="img1"></a>
+				<a href=""><img src="imges2/dhp.jpg" height="300" width="200" alt=""></a>
+			</div>
+			<div class="right">
+				<p>即将上线</p>
+				<div class="rb">
+					<a href=""><img src="imges2/即将上映.jpg" height="80" width="145" alt=""></a>
+					<a href=""><ul>
+						<li class="l1">生化危机</li>
+						<li class="l2">7月18日网络首播</li>
+					</ul></a>
+				</div>
+				<div class="rb">
+					<a href=""><img src="imges2/即将上映.jpg" height="80" width="145" alt=""></a>
+					<a href=""><ul>
+						<li class="l1">生化危机</li>
+						<li class="l2">7月18日网络首播</li>
+					</ul></a>
+				</div>
+				<div class="rb">
+					<a href=""><img src="imges2/即将上映.jpg" height="80" width="145" alt=""></a>
+					<a href=""><ul>
+						<li class="l1">生化危机</li>
+						<li class="l2">7月18日网络首播</li>
+					</ul></a>
+				</div>
+			</div>
+		</div>
+		<div class="bj gWidth">
+			<div class="left">
+				<ul>
+					<p>编辑推荐</p>
+					<a href=""><li class="active">港台经典</li></a>
+					<a href=""><li>科幻巨制</li></a>
+					<a href=""><li>港台经典</li></a>
+					<a href=""><li>科幻巨制</li></a>
+				</ul>
+				<div class="la">
+					<a href=""><img src="imges2/bj1.jpg" height="169" width="200" alt="" class="img1"></a>
+					<a href=""><img src="imges2/bj1.jpg" height="169" width="200" alt="" class="img1"></a>
+					<a href=""><img src="imges2/bj1.jpg" height="169" width="200" alt="" class="img1"></a>
+					<a href=""><img src="imges2/bj1.jpg" height="169" width="200" alt=""></a>
+				</div>
+				<div class="lb">
+					<a href=""><img src="imges2/lb.jpg" height="90" width="600" alt=""></a>
+					<a href=""><img src="imges2/lb2.jpg" alt=""><img src="" alt=""></a>
+				</div>
+			</div>
+			<div class="right">
+				<p class="p1">电影风云人物</p>
+				<ul>
+					<li class="l1"><a href="">陈柏霖<span>第三话：爱的未来式</span></a></li>
+					<li class="l2"><a href="">陈柏霖<span>第三话：爱的未来式</span></a></li>
+					<li class="l3"><a href="">陈柏霖<span>第三话：爱的未来式</span></a></li>
+					<li class="l4"><a href="">陈柏霖<span>第三话：爱的未来式</span></a></li>
+					<li class="l5"><a href="">陈柏霖<span>第三话：爱的未来式</span></a></li>
+					<li class="l6"><a href="">陈柏霖<span>第三话：爱的未来式</span></a></li>
+					<li class="l7"><a href="">陈柏霖<span>第三话：爱的未来式</span></a></li>
+					<li class="l8"><a href="">陈柏霖<span>第三话：爱的未来式</span></a></li>
+					<li class="l9"><a href="">陈柏霖<span>第三话：爱的未来式</span></a></li>
+					<li class="l10"><a href="">陈柏霖<span>第三话：爱的未来式</span></a></li>
+				</ul>
+				<p class="p2"><a href="">更多明星 >></a></p>
+			</div>
+		</div>
+		<div class="hz gWidth">
+			<p>合作伙伴</p>
+			<div class="hzb">
+				<a href=""><img src="imges2/hz.jpg" height="60" width="150" alt=""></a>
+				<a href=""><img src="imges2/hz1.jpg" alt=""></a>
+				<a href=""><img src="imges2/hz2.jpg" alt=""></a>
+				<a href=""><img src="imges2/hz3.jpg" alt=""></a>
+				<a href=""><img src="imges2/hz.jpg" alt=""></a>
+				<a href=""><img src="imges2/hz1.jpg" alt=""></a>
+				<a href=""><img src="imges2/hz2.jpg" alt=""></a>
+				<a href=""><img src="imges2/hz3.jpg" alt=""></a>
+				<a href=""><img src="imges2/hz.jpg" alt=""></a>
+				<a href=""><img src="imges2/hz1.jpg" alt=""></a>
+			</div>
+		</div>
+		<div class="soub">
+			<form>
+				<input type="text" class="text">
+				<button type="submit" class="sub"></button>
+			</form>
+		</div>
+		<div class="bottom">
+			<div class="bottomt">
+				<ul class="l1">
+					<li>
+						<ul>
+							<li class="t1">资源</li>
+							<li><a href="">首页</a>  <a href="">电视剧</a>  <a href="">电影</a>  <a href="">综艺</a>  <a href="">视频</a></li>
+						</ul>
+					</li>
+					<li>
+						<ul>
+							<li class="t1">社区</li>
+							<li><a href="">空间</a>  <a href="">看吧</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="l2">
+					<li class="t1">分类</li>
+					<li><a href="">资讯</a> <a href="">拍客</a> <a href="">体育</a> <a href="">汽车</a> <a href="">科技</a> <a href="">财经</a><br><a href="">资讯</a> <a href="">拍客</a> <a href="">体育</a> <a href="">汽车</a> <a href="">科技</a> <a href="">财经</a><br><a href="">资讯</a> <a href="">拍客</a> <a href="">体育</a> <a href="">汽车</a> <a href="">科技</a> <a href="">财经</a></li>
+				</ul>
+				<ul class="l3">
+					<li class="t1">软件</li>
+							<li><a href="">PC客户端</a> <br> <a href="">手机客户端</a> <br> <a href="">实验室</a></li>
+				</ul>
+				<ul class="l4">
+					<li class="t1">支持</li>
+							<li><a href="">繁体版</a> <br> <a href="">在线反馈</a> <br> <a href="">帮助中心</a></li>
+				</ul>
+				<ul class="l5">
+							<li><a href="">优酷土豆集团</a> <br> <a href="">Youku Tudou lnc</a> <br> <a href="">手机客户端</a> <br> <a href="">友情链接</a></li>
+							<li><a href="">优酷土豆网</a> <br> <a href="">Youku Tudou lnc</a> <br> <a href="">手机客户端</a> <br> <a href="">实验室</a></li>
+				</ul>
+			</div>
+			<div class="bottomc">
+				<ul class="u1">
+					<li class="la"><a href="">经营性网站备案</a></li>
+					<li class="lb"><a href="">中国互联网诚信联盟</a></li>
+					<li class="lc"><a href="">不良信息举报中心</a></li>
+					<li><a href="">北京互联网举报中心</a></li>
+				</ul>
+				<p class="p1"><a href="">京ICP证060288号</a> <br> <a href="">网络视听许可证0108283号</a> <br> <a href="">网络110报警服务</a> <br> <a href="">北京12318文化市场举报热线</a></p>
+				<p class="p1"><a href="">网络文化经营许可证[2011]0088-037号</a> <br> <a href="">新出网证（京）字 160号</a> <br> <a href="">网络110报警服务</a> <br> <a href="">北京12318文化市场举报热线</a></p>
+				<p class="p2">
+					请使用者仔细阅读优酷<a href="">使用协议</a>和<a href="">版权声明</a><br>
+					Copyright©2013 优酷 youku.com 版权所有
+				</p>
+			</div>
+			
+		</div>
+    </body>
+</html>

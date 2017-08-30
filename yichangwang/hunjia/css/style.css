@@ -1,0 +1,305 @@
+@charset "utf-8";
+/* CSS Document */
+
+.head img{
+	margin-top: 27px;
+	margin-bottom: 20px;
+}
+.nav1{
+	width: 100%;
+	height: 44px;
+	background-color: #FB4E7E;
+}
+.nav{
+	height: 44px;
+}
+.nav li{
+	float: left;
+}
+.nav li a{
+	color:#fff;
+	line-height: 44px;
+	font-size: 14px;
+	margin-right: 45px;
+}
+.banner{
+	margin-top: 12px;
+	margin-bottom: 43px;
+}
+.banLeft{
+	width: 910px;
+	overflow: hidden;
+	position: relative;
+	float: left;
+	margin-right: 20px;
+}
+.banLeft .uu{
+	width: 4550px;
+}
+.banLeft .uu li{
+	float: left;
+}
+.banLeft .u2 li{
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background-color: #fff;
+	float: left;
+	margin-right: 10px;
+}
+.banLeft .u2{
+	position: absolute;
+	left: 66px;
+	bottom:41px;
+}
+
+.banLeft .u2 li:hover{
+	background-color: #FB4E7E;
+}
+.touming{
+	position: absolute;
+	right: 0;
+	bottom:0;
+	width: 524px;
+	height: 84px;
+	background-color: rgba(255,255,255,.5);
+	margin-bottom: 20px;
+}
+.touming h5 a{
+	font-size: 26px;
+	line-height: 56px;
+	padding-left:15px;
+	color:#000000;
+}
+.touming p a{
+	color:#676768;
+	padding-left:15px;
+	color:#404041;
+}
+.banRight{
+	width: 268px;
+	float: left;
+	border:1px solid #EFEFEF;
+}
+
+.banRight p{
+	font-size: 20px;
+	color:#FB4E7E;
+	margin-top: 16px;
+	padding-left: 15px;
+	margin-bottom: 10px;
+}
+.banRight p a{
+	font-size: 14px;
+	margin-left: 113px;
+	color: #666666;
+}
+.banRight ul{
+	padding-left: 15px;
+}
+.banRight li a{
+	font-size: 14px;
+	color:#444444;
+	line-height: 28px;
+	font-family:"微软雅黑";
+}
+.content p{
+	color:#FB4E7E;
+	font-size: 24px;
+	
+}
+.content li{
+	float: left;
+}
+.content span{
+	margin-left: 20px;
+}
+.content img{
+	margin-right: 13px;
+	margin-top: 20px;
+}
+.content2 .p1{
+	color:#FB4E7E;
+	font-size: 24px;
+	margin-top: 40px;
+	margin-bottom: 20px;
+}
+.content2 span{
+	margin-left: 20px;
+}
+.content2{
+	width: 557px;
+	float: left;
+
+}
+.content2 img{
+	margin-right: 20px;
+	float: left;
+}
+.content3 h5{
+	font-size: 18px;
+	color: #FB4E7E;
+	margin-bottom: 10px;
+}
+.content3{
+	width: 305px;
+	float: left;
+}
+.content3 .p2{
+	font-size: 12px;
+	line-height: 20px;
+	color: #747474;
+	margin-bottom: 14px;
+}
+.content3 .p3{
+	font-size: 14px;
+	color:#747474;
+	line-height: 24px;
+}
+.content4{
+	width: 305px;
+	float: left;
+	margin-top: 18px;
+}
+.content5 p{
+	width: 88px;
+	font-size: 12px;
+	color:#989898;
+	text-align: center;
+	line-height: 20px;
+}
+ .content4 .content5{
+	margin-top: 10px;
+	float: left;
+	width: 88px;
+}
+.content6{
+	margin:0 20px;
+}
+.content7{
+	margin-left: 74px;
+}
+.yingLeft p{
+	font-size: 24px;
+	color:#FB4E7E;
+	margin-bottom: 10px;
+	margin-top: 40px;
+}
+.yingLeft{
+	width: 910px;
+	float: left;
+}
+.yingLeft li{
+	float: left;
+}
+.yingLeft img{
+	margin-right: 11px;
+	margin-bottom: 20px;
+}
+.yingRight1 h5{
+	font-size: 24px;
+	color:#FB4E7E;
+	float: left;
+	width: 120px;
+	border-bottom: 1px solid #FB4E7E;
+	height: 36px;
+}
+.yingRight1  a{
+	font-size: 14px;
+	color:#575757; 
+	margin-left: 120px;
+	float: left;
+
+}
+.yingRight2 .a1{
+	margin-top: 10px;
+}
+.yingRight1{
+	float: left;
+	margin-top: 75px;
+	
+	margin-bottom: 7px;
+
+}
+.yingRight1 ul{
+	float: left;
+	margin-left: -119px;
+	margin-top: 12px;
+}
+.yingRight2{
+	border-bottom:1px solid #E4E4E4;
+}
+.yingRight1 ul li{
+	line-height: 30px;
+}
+.yingRight3{
+	margin-top: 4px;
+}
+.yinglou{
+	margin-bottom: 20px;
+}
+
+.xingfu p{
+	font-size: 24px;
+	color:#FC6F93;
+	margin-bottom: 20px;
+}
+
+.xingfu li{
+	float: left;
+}
+.xingfu .img2{
+	position: absolute;
+	left:0;
+	bottom:-44px;
+}
+.xingfu{
+	position: relative;
+	height: 720px;
+}
+.xingfu .img5{
+	position: absolute;
+	left:391px;
+	bottom:-44px;
+}
+
+
+.xingfu .img4{
+	margin-right: 17px;
+	
+}
+.xingfu .img7{
+	position: absolute;
+	left:797px;
+	bottom:-44px;
+}
+
+.xingfu .img1{
+	margin-right: 17px;
+	
+}
+.xingfu .img6{
+	margin-right: -17px;
+}
+.footer{
+	width: 100%;
+	height: 500px;
+	background-color: #FAFAFA;
+	color:#7A7A7A;
+}
+.footer p{
+	font-size: 12px;
+	line-height: 30px;
+	text-align: center;
+}
+.footer1{
+	padding-top: 35px;
+	margin-top: 73px;
+}
+.footer span{
+	padding: 0 5px;
+
+}
+.footer a{
+	color: #7A7A7A;
+}
